@@ -7,6 +7,7 @@ import project.dto.country.CountrySaveDTO;
 import project.dto.country.CountryUpdateDTO;
 import project.repository.CountryRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CountryService implements CRUDService<CountryDTO, CountrySaveDTO, CountryUpdateDTO, CountryDeleteDTO> {
@@ -21,12 +22,16 @@ public class CountryService implements CRUDService<CountryDTO, CountrySaveDTO, C
 
     @Override
     public List<CountryDTO> findAll() {
-        return null;
+        List<CountryDTO> countryDTOList = new ArrayList<>();
+        this.countryRepository.findAll().forEach(country -> {
+            countryDTOList.add(this.modelMapper.map(country, CountryDTO.class));
+        });
+        return countryDTOList;
     }
 
     @Override
     public CountryDTO findById(String id) {
-        return null;
+        return this.modelMapper.map(this.countryRepository.findById(id), CountryDTO.class);
     }
 
     @Override
