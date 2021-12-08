@@ -1,26 +1,24 @@
-package project.entities;
+package project.dto.earthquake;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import project.entities.Country;
 
 import java.util.Date;
 
-@Document
-public class Earthquake {
+public class EarthquakeDTO {
 
-    @Id
     private String id;
     private double magnitude;
     private Date date;
     private int deathToll;
-    @DBRef
     private Country location;
 
-    public Earthquake() {
+    public EarthquakeDTO() {
     }
 
-    public Earthquake(String id, double magnitude, Date date, int deathToll, Country location) {
+    public EarthquakeDTO(String id, double magnitude, Date date, int deathToll, Country location) {
         this.id = id;
         this.magnitude = magnitude;
         this.date = date;

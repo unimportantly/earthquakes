@@ -1,23 +1,15 @@
-package project.entities;
+package project.dto.country;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+public class CountryUpdateDTO {
 
-import java.util.List;
-
-@Document
-public class Country {
-
-    @Id
     private String id;
     private String name;
     private String code;
 
-    public Country() {
+    public CountryUpdateDTO() {
     }
 
-    public Country(String id, String name, String code) {
+    public CountryUpdateDTO(String id, String name, String code) {
         this.id = id;
         this.name = name;
         this.code = code;
