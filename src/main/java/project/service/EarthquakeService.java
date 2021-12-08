@@ -5,8 +5,10 @@ import project.dto.earthquake.EarthquakeDTO;
 import project.dto.earthquake.EarthquakeDeleteDTO;
 import project.dto.earthquake.EarthquakeSaveDTO;
 import project.dto.earthquake.EarthquakeUpdateDTO;
+import project.entities.Earthquake;
 import project.repository.EarthquakeRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EarthquakeService implements CRUDService<EarthquakeDTO, EarthquakeSaveDTO, EarthquakeUpdateDTO, EarthquakeDeleteDTO> {
@@ -21,26 +23,32 @@ public class EarthquakeService implements CRUDService<EarthquakeDTO, EarthquakeS
 
     @Override
     public List<EarthquakeDTO> findAll() {
-        return null;
+        List<EarthquakeDTO> earthquakeDTOList = new ArrayList<>();
+        this.earthquakeRepository.findAll().forEach(earthquake -> {
+            earthquakeDTOList.add(this.modelMapper.map(earthquake, EarthquakeDTO.class));
+        });
+        return earthquakeDTOList;
     }
 
     @Override
     public EarthquakeDTO findById(String id) {
-        return null;
+        return this.modelMapper.map(this.earthquakeRepository.findById(id), EarthquakeDTO.class);
     }
 
     @Override
     public EarthquakeDTO save(EarthquakeSaveDTO obj) {
-        return null;
+        this.earthquakeRepository.save(this.modelMapper.map(obj, Earthquake.class));
+        return this.modelMapper.map(obj, EarthquakeDTO.class);
     }
 
     @Override
     public EarthquakeDTO update(EarthquakeUpdateDTO obj) {
-        return null;
+        this.earthquakeRepository.save(this.modelMapper.map(obj, Earthquake.class));
+        return this.modelMapper.map(obj, EarthquakeDTO.class);
     }
 
     @Override
     public void delete(EarthquakeDeleteDTO obj) {
-
+        this.earthquakeRepository.delete(this.modelMapper.map(obj, Earthquake.class));
     }
 }

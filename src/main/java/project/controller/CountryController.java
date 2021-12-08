@@ -1,12 +1,14 @@
 package project.controller;
 
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.dto.country.CountryDTO;
+import project.dto.country.CountryDeleteDTO;
+import project.dto.country.CountrySaveDTO;
+import project.dto.country.CountryUpdateDTO;
+import project.entities.Country;
 import project.service.CountryService;
 
 import java.util.List;
@@ -19,6 +21,13 @@ public class CountryController {
 
     public CountryController(CountryService countryService) {
         this.countryService = countryService;
+    }
+
+    // save
+
+    @PostMapping()
+    public ResponseEntity<CountryDTO> save(@RequestBody CountrySaveDTO countrySaveDTO){
+     return ResponseEntity.status(HttpStatus.CREATED).body(countryService.save(countrySaveDTO));
     }
 
     // find & find all
@@ -35,5 +44,20 @@ public class CountryController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(countryDTO);
+    }
+
+    // update
+
+    @PutMapping()
+    public ResponseEntity<CountryDTO> update(CountryUpdateDTO countryUpdateDTO){
+        return ResponseEntity.ok(countryService.update(countryUpdateDTO));
+    }
+
+    // delete
+
+    @DeleteMapping()
+    public ResponseEntity<Boolean> delete(@RequestBody CountryDeleteDTO countryDeleteDTO){
+        countryService.delete(countryDeleteDTO);
+        return ResponseEntity.ok().build();
     }
 }

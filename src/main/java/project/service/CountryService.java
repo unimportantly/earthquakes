@@ -5,6 +5,7 @@ import project.dto.country.CountryDTO;
 import project.dto.country.CountryDeleteDTO;
 import project.dto.country.CountrySaveDTO;
 import project.dto.country.CountryUpdateDTO;
+import project.entities.Country;
 import project.repository.CountryRepository;
 
 import java.util.ArrayList;
@@ -36,16 +37,18 @@ public class CountryService implements CRUDService<CountryDTO, CountrySaveDTO, C
 
     @Override
     public CountryDTO save(CountrySaveDTO obj) {
-        return null;
+        this.countryRepository.save(this.modelMapper.map(obj, Country.class));
+        return this.modelMapper.map(obj, CountryDTO.class);
     }
 
     @Override
     public CountryDTO update(CountryUpdateDTO obj) {
-        return null;
+        this.countryRepository.save(this.modelMapper.map(obj, Country.class));
+        return this.modelMapper.map(obj, CountryDTO.class);
     }
 
     @Override
     public void delete(CountryDeleteDTO obj) {
-
+        this.countryRepository.delete(this.modelMapper.map(obj, Country.class));
     }
 }
