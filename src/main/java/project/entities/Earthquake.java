@@ -9,11 +9,13 @@ import java.util.Date;
 @Document
 public class Earthquake {
 
+    // tells the db that this is the ID
     @Id
     private String id;
     private double magnitude;
     private Date date;
     private int deathToll;
+    // link this document with the country doc
     @DBRef
     private Country location;
 

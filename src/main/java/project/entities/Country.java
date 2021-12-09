@@ -9,10 +9,12 @@ import java.util.List;
 @Document
 public class Country {
 
+    // tells the db that this is the id
     @Id
     private String id;
     private String name;
     private String code;
+    // tells the db to link this doc with the earthquake doc through this attribute
     @DBRef
     private List<Earthquake> earthquakes;
 
