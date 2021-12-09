@@ -6,7 +6,7 @@ public interface CRUDService<T, S, U, D> {
 
     public List<T> findAll();
 
-    public T findById(String id);
+    public T find(String id);
 
     public T save(S obj);
 

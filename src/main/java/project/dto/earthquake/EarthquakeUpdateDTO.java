@@ -1,6 +1,6 @@
 package project.dto.earthquake;
 
-import project.entities.Country;
+import project.dto.country.CountryRelationDTO;
 
 import java.util.Date;
 
@@ -10,12 +10,12 @@ public class EarthquakeUpdateDTO {
     private double magnitude;
     private Date date;
     private int deathToll;
-    private Country location;
+    private CountryRelationDTO location;
 
     public EarthquakeUpdateDTO() {
     }
 
-    public EarthquakeUpdateDTO(String id, double magnitude, Date date, int deathToll, Country location) {
+    public EarthquakeUpdateDTO(String id, double magnitude, Date date, int deathToll, CountryRelationDTO location) {
         this.id = id;
         this.magnitude = magnitude;
         this.date = date;
@@ -55,11 +55,11 @@ public class EarthquakeUpdateDTO {
         this.deathToll = deathToll;
     }
 
-    public Country getLocation() {
+    public CountryRelationDTO getLocation() {
         return location;
     }
 
-    public void setLocation(Country location) {
+    public void setLocation(CountryRelationDTO location) {
         this.location = location;
     }
 }

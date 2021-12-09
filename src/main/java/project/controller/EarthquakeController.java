@@ -36,7 +36,7 @@ public class EarthquakeController {
 
     @GetMapping("{id}")
     public ResponseEntity<EarthquakeDTO> getEarthquake(@PathVariable String id){
-        EarthquakeDTO earthquakeDTO = earthquakeService.findById(id);
+        EarthquakeDTO earthquakeDTO = earthquakeService.find(id);
         if(earthquakeDTO == null){
             return ResponseEntity.notFound().build();
         }
@@ -45,13 +45,13 @@ public class EarthquakeController {
 
     // update
     @PutMapping()
-    public ResponseEntity<EarthquakeDTO> update(EarthquakeUpdateDTO earthquakeUpdateDTO){
+    public ResponseEntity<EarthquakeDTO> update(@RequestBody EarthquakeUpdateDTO earthquakeUpdateDTO){
         return ResponseEntity.ok(earthquakeService.update(earthquakeUpdateDTO));
     }
 
     // delete
     @DeleteMapping()
-    public ResponseEntity<Boolean> delete(EarthquakeDeleteDTO earthquakeDeleteDTO){
+    public ResponseEntity<Boolean> delete(@RequestBody EarthquakeDeleteDTO earthquakeDeleteDTO){
         earthquakeService.delete(earthquakeDeleteDTO);
         return ResponseEntity.ok(true);
     }

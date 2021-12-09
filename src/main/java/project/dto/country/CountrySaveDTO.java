@@ -1,7 +1,13 @@
 package project.dto.country;
 
+import project.dto.earthquake.EarthquakeDTO;
+import project.entities.Earthquake;
+
+import java.util.List;
+
 public class CountrySaveDTO {
 
+    //why don't we need the list of earthquakes here?
     private String name;
     private String code;
 

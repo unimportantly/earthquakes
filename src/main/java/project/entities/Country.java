@@ -13,14 +13,17 @@ public class Country {
     private String id;
     private String name;
     private String code;
+    @DBRef
+    private List<Earthquake> earthquakes;
 
     public Country() {
     }
 
-    public Country(String id, String name, String code) {
+    public Country(String id, String name, String code, List<Earthquake> earthquakes) {
         this.id = id;
         this.name = name;
         this.code = code;
+        this.earthquakes = earthquakes;
     }
 
     public String getId() {
@@ -47,4 +50,11 @@ public class Country {
         this.code = code;
     }
 
+    public List<Earthquake> getEarthquakes() {
+        return earthquakes;
+    }
+
+    public void setEarthquakes(List<Earthquake> earthquakes) {
+        this.earthquakes = earthquakes;
+    }
 }

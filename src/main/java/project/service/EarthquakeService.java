@@ -10,6 +10,7 @@ import project.repository.EarthquakeRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class EarthquakeService implements CRUDService<EarthquakeDTO, EarthquakeSaveDTO, EarthquakeUpdateDTO, EarthquakeDeleteDTO> {
 
@@ -31,8 +32,13 @@ public class EarthquakeService implements CRUDService<EarthquakeDTO, EarthquakeS
     }
 
     @Override
-    public EarthquakeDTO findById(String id) {
-        return this.modelMapper.map(this.earthquakeRepository.findById(id), EarthquakeDTO.class);
+    public EarthquakeDTO find(String id) {
+        EarthquakeDTO earthquakeDTO = null;
+        Optional<Earthquake> earthquake = this.earthquakeRepository.findById(id);
+        if(earthquake.isPresent()){
+            earthquakeDTO = this.modelMapper.map(earthquake.get(), EarthquakeDTO.class);
+        }
+        return earthquakeDTO;
     }
 
     @Override
@@ -48,7 +54,7 @@ public class EarthquakeService implements CRUDService<EarthquakeDTO, EarthquakeS
     }
 
     @Override
-    public void delete(EarthquakeDeleteDTO obj) {
-        this.earthquakeRepository.delete(this.modelMapper.map(obj, Earthquake.class));
+    public void delete(EarthquakeDeleteDTO earthquakeDeleteDTO) {
+        earthquakeRepository.delete(this.modelMapper.map(earthquakeDeleteDTO, Earthquake.class));
     }
 }

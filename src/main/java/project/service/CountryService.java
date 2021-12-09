@@ -10,6 +10,7 @@ import project.repository.CountryRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CountryService implements CRUDService<CountryDTO, CountrySaveDTO, CountryUpdateDTO, CountryDeleteDTO> {
 
@@ -31,8 +32,13 @@ public class CountryService implements CRUDService<CountryDTO, CountrySaveDTO, C
     }
 
     @Override
-    public CountryDTO findById(String id) {
-        return this.modelMapper.map(this.countryRepository.findById(id), CountryDTO.class);
+    public CountryDTO find(String id) {
+        CountryDTO countryDTO = null;
+        Optional<Country> country = countryRepository.findById(id);
+        if(country.isPresent()){
+            countryDTO = modelMapper.map(country.get(), CountryDTO.class);
+        }
+        return countryDTO;
     }
 
     @Override
@@ -48,7 +54,7 @@ public class CountryService implements CRUDService<CountryDTO, CountrySaveDTO, C
     }
 
     @Override
-    public void delete(CountryDeleteDTO obj) {
-        this.countryRepository.delete(this.modelMapper.map(obj, Country.class));
+    public void delete(CountryDeleteDTO countryDeleteDTO) {
+        this.countryRepository.delete(this.modelMapper.map(countryDeleteDTO, Country.class));
     }
 }

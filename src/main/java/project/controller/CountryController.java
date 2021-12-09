@@ -39,17 +39,17 @@ public class CountryController {
 
     @GetMapping("{id}")
     public ResponseEntity<CountryDTO> getCountry(@PathVariable String id){
-        CountryDTO countryDTO = countryService.findById(id);
+        CountryDTO countryDTO = countryService.find(id);
         if(countryDTO == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(countryDTO);
+        return ResponseEntity.ok().body(countryDTO);
     }
 
     // update
 
     @PutMapping()
-    public ResponseEntity<CountryDTO> update(CountryUpdateDTO countryUpdateDTO){
+    public ResponseEntity<CountryDTO> update(@RequestBody CountryUpdateDTO countryUpdateDTO){
         return ResponseEntity.ok(countryService.update(countryUpdateDTO));
     }
 

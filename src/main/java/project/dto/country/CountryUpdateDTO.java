@@ -1,5 +1,10 @@
 package project.dto.country;
 
+import project.dto.earthquake.EarthquakeDTO;
+import project.entities.Earthquake;
+
+import java.util.List;
+
 public class CountryUpdateDTO {
 
     private String id;

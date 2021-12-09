@@ -1,9 +1,7 @@
 package project.dto.earthquake;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-import project.entities.Country;
+
+import project.dto.country.CountryDTO;
 
 import java.util.Date;
 
@@ -13,12 +11,12 @@ public class EarthquakeDTO {
     private double magnitude;
     private Date date;
     private int deathToll;
-    private Country location;
+    private CountryDTO location;
 
     public EarthquakeDTO() {
     }
 
-    public EarthquakeDTO(String id, double magnitude, Date date, int deathToll, Country location) {
+    public EarthquakeDTO(String id, double magnitude, Date date, int deathToll, CountryDTO location) {
         this.id = id;
         this.magnitude = magnitude;
         this.date = date;
@@ -58,11 +56,11 @@ public class EarthquakeDTO {
         this.deathToll = deathToll;
     }
 
-    public Country getLocation() {
+    public CountryDTO getLocation() {
         return location;
     }
 
-    public void setLocation(Country location) {
+    public void setLocation(CountryDTO location) {
         this.location = location;
     }
 }
